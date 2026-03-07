@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Details - Generative Finance Suite</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1", // Indigo
+                        "ai-accent": "#06b6d4", // Cyan
+                        "ai-glow": "#3b82f6", // Blue for glows
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "surface-dark": "#1e293b",
+                        "surface-darker": "#020617",
+                        "text-secondary": "#94a3b8",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'grid-pattern': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'expand-width': 'expandWidth 0.8s ease-out forwards',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'flow': 'flow 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        expandWidth: {
+                            '0%': { width: '0%', opacity: '0' },
+                            '100%': { width: '100%', opacity: '1' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' },
+                        },
+                        flow: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '100%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .glass-panel {
+                @apply bg-surface-dark/40 backdrop-blur-md border border-white/10;
+            }
+            .glass-panel-hover {
+                 @apply hover:bg-surface-dark/60 hover:border-ai-accent/30 transition-all duration-300;
+            }
+            .text-glow {
+                text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+            }
+            .tech-tag {
+                @apply px-3 py-1.5 rounded-md bg-surface-darker/50 border border-white/10 text-xs font-mono text-text-secondary flex items-center gap-2 hover:border-ai-accent/40 hover:text-white transition-colors cursor-default;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display overflow-x-hidden selection:bg-ai-accent selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col">
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03]"></div>
+<div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/20 rounded-full blur-[120px] opacity-40 mix-blend-screen animate-pulse-slow"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[800px] h-[600px] bg-ai-accent/10 rounded-full blur-[120px] opacity-20 mix-blend-screen"></div>
+</div>
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-surface-darker/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+<div class="flex items-center justify-between w-full max-w-7xl mx-auto px-6 py-4">
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="relative w-9 h-9 rounded-full bg-gradient-to-tr from-primary via-ai-accent to-primary p-[1.5px] animate-shimmer bg-[length:200%_100%]">
+<div class="w-full h-full rounded-full bg-surface-darker flex items-center justify-center backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm text-white group-hover:text-ai-accent transition-colors">smart_toy</span>
+</div>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-surface-darker rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-bold tracking-tight text-white leading-none group-hover:text-ai-accent transition-colors font-display">Chirag Jha</span>
+<span class="text-[10px] font-mono text-text-secondary leading-none mt-1 group-hover:text-white transition-colors">AI CONSULTANT</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-text-secondary hover:text-white transition-colors relative group py-2" href="#">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-ai-accent to-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
+</a>
+<a class="text-sm font-medium text-white transition-colors relative group py-2" href="#">
+                    Expertise
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-ai-accent to-primary transition-all duration-300 shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
+</a>
+<a class="text-sm font-medium text-text-secondary hover:text-white transition-colors relative group py-2" href="#">
+                    Philosophy
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-ai-accent to-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
+</a>
+<a class="text-sm font-medium text-text-secondary hover:text-white transition-colors relative group py-2" href="#">
+                    Contact
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-ai-accent to-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
+</a>
+</nav>
+<button class="md:hidden text-white ml-auto p-2 hover:bg-white/5 rounded-lg transition-colors border border-transparent hover:border-white/10">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow pt-32 pb-20 px-6 relative z-10 w-full max-w-7xl mx-auto">
+<div class="mb-8 flex items-center gap-2 text-xs font-mono text-text-secondary">
+<a class="hover:text-ai-accent transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<a class="hover:text-ai-accent transition-colors" href="#">Projects</a>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-white">Generative Finance Suite</span>
+</div>
+<div class="relative w-full rounded-3xl overflow-hidden border border-white/10 glass-panel mb-12">
+<div class="absolute inset-0 bg-gradient-to-r from-surface-darker/90 via-surface-darker/80 to-surface-darker/40 z-10"></div>
+<div class="absolute inset-0 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiCbaKkZP3aV3PiBrrHdXiHFYQZWMlf_95pE_jsJB5QKDE1RHMDj_Buibar3x2KeXLhdBQQobLVozThtMJlFi4YfhP5j8QDmZ59sA5gTFByd33kHcFuP2WPkftVKTCLH7EmNxL-TaILXhi-ya5E43v4U3CDJlTaRczX9VMGHKbU55UHtKkh83raR801L-mdaeandoeM8a7YGJZ_gmSsx-aRz8zADbr-jyMm3RLAOvGCdpx1_spaH7U0WeDaAd2t-OYNGTMWupsfxY')] bg-cover bg-center z-0 opacity-40"></div>
+<div class="relative z-20 p-8 md:p-12 lg:p-16 flex flex-col gap-6 max-w-4xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ai-accent/10 border border-ai-accent/20 text-xs font-mono text-ai-accent w-fit">
+<span class="material-symbols-outlined text-sm">workspace_premium</span>
+                    ENTERPRISE SOLUTION
+                </div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1]">
+                    Generative <span class="text-transparent bg-clip-text bg-gradient-to-r from-ai-accent to-primary text-glow">Finance Suite</span>
+</h1>
+<p class="text-lg md:text-xl text-text-secondary max-w-2xl font-body leading-relaxed">
+                    Architecting a RAG-based financial analysis ecosystem to reduce analyst reporting time by 40% using specialized LLM agents and vector search.
+                </p>
+<div class="flex flex-wrap gap-4 mt-4">
+<button class="px-6 py-3 rounded-lg bg-white text-surface-darker font-bold text-sm hover:bg-ai-accent transition-colors flex items-center gap-2">
+                        View Live Demo <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+<button class="px-6 py-3 rounded-lg bg-surface-darker/50 border border-white/10 text-white font-medium text-sm hover:bg-white/10 transition-colors flex items-center gap-2 backdrop-blur-sm">
+                        Download Case Study <span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<div class="lg:col-span-4 space-y-8">
+<div class="glass-panel rounded-xl p-6">
+<h3 class="text-sm font-mono text-text-secondary uppercase tracking-wider mb-6 pb-4 border-b border-white/5">Project Details</h3>
+<div class="space-y-5">
+<div class="flex flex-col gap-1">
+<span class="text-xs text-text-secondary font-mono">CLIENT</span>
+<span class="text-base font-medium text-white">Global Fintech Corp</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-text-secondary font-mono">TIMELINE</span>
+<span class="text-base font-medium text-white">Q3 2023 - Q1 2024</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-text-secondary font-mono">ROLE</span>
+<span class="text-base font-medium text-white">Lead Product Manager</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-text-secondary font-mono">TEAM SIZE</span>
+<span class="text-base font-medium text-white">12 (4 AI Eng, 3 Backend, 2 FE, 3 Data)</span>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-6">
+<h3 class="text-sm font-mono text-text-secondary uppercase tracking-wider mb-6 pb-4 border-b border-white/5">Technology Stack</h3>
+<div class="flex flex-wrap gap-2">
+<span class="tech-tag"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Python</span>
+<span class="tech-tag"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>OpenAI GPT-4</span>
+<span class="tech-tag"><span class="w-2 h-2 rounded-full bg-orange-500"></span>LangChain</span>
+<span class="tech-tag"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Pinecone</span>
+<span class="tech-tag"><span class="w-2 h-2 rounded-full bg-cyan-400"></span>React</span>
+<span class="tech-tag"><span class="w-2 h-2 rounded-full bg-indigo-500"></span>FastAPI</span>
+<span class="tech-tag"><span class="w-2 h-2 rounded-full bg-pink-500"></span>Docker</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 space-y-12">
+<section>
+<div class="flex items-center gap-3 mb-4">
+<span class="p-2 rounded-lg bg-surface-dark border border-white/5 text-ai-accent">
+<span class="material-symbols-outlined text-xl">psychology_alt</span>
+</span>
+<h2 class="text-2xl font-bold text-white font-display">The Problem Statement</h2>
+</div>
+<div class="prose prose-invert prose-lg text-text-secondary leading-relaxed font-body">
+<p>
+                            Financial analysts were spending upwards of <span class="text-white font-medium">15 hours per week</span> manually sifting through thousands of unstructured documents—earnings call transcripts, 10-K filings, and market news—to generate a single comprehensive investment memo. 
+                        </p>
+<p class="mt-4">
+                            The existing keyword-based search tools were failing to capture semantic context, leading to missed insights and delayed decision-making in a high-frequency trading environment. The client needed a solution that could not only retrieve information but synthesize it into actionable intelligence.
+                        </p>
+</div>
+</section>
+<div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="p-2 rounded-lg bg-surface-dark border border-white/5 text-primary">
+<span class="material-symbols-outlined text-xl">hub</span>
+</span>
+<h2 class="text-2xl font-bold text-white font-display">The Solution: Intelligent RAG Architecture</h2>
+</div>
+<p class="text-text-secondary leading-relaxed mb-8 font-body">
+                        We implemented a sophisticated Retrieval-Augmented Generation (RAG) system. The core innovation was a multi-agent orchestration layer that decomposes complex analyst queries into sub-tasks (e.g., "retrieve 2023 revenue", "compare with 2022", "summarize risk factors").
+                    </p>
+<div class="w-full rounded-xl bg-surface-darker border border-white/10 p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-[size:20px_20px] bg-grid-pattern opacity-10"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 py-8 px-4">
+<div class="flex flex-col items-center gap-2 w-32">
+<div class="w-16 h-16 rounded-xl bg-surface-dark border border-white/10 flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+<span class="material-symbols-outlined text-2xl text-text-secondary">person</span>
+</div>
+<span class="text-[10px] font-mono text-text-secondary uppercase">Analyst</span>
+</div>
+<div class="h-0.5 w-12 bg-white/10 md:block hidden relative">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t border-r border-white/10 rotate-45"></div>
+</div>
+<span class="material-symbols-outlined text-white/20 md:hidden">arrow_downward</span>
+<div class="flex flex-col items-center gap-2 relative">
+<div class="absolute -inset-4 bg-primary/20 blur-xl rounded-full animate-pulse-slow"></div>
+<div class="w-20 h-20 rounded-xl bg-gradient-to-br from-surface-dark to-surface-darker border border-ai-accent/30 flex items-center justify-center relative z-10 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+<span class="material-symbols-outlined text-3xl text-ai-accent">smart_toy</span>
+</div>
+<span class="text-[10px] font-mono text-ai-accent uppercase font-bold">Orchestrator Agent</span>
+</div>
+<div class="h-0.5 w-12 bg-white/10 md:block hidden relative">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t border-r border-white/10 rotate-45"></div>
+</div>
+<span class="material-symbols-outlined text-white/20 md:hidden">arrow_downward</span>
+<div class="flex flex-col items-center gap-2 w-32">
+<div class="w-16 h-16 rounded-xl bg-surface-dark border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-purple-400">database</span>
+</div>
+<span class="text-[10px] font-mono text-text-secondary uppercase">Vector Knowledge</span>
+</div>
+</div>
+<div class="text-center mt-4">
+<span class="text-[10px] text-text-secondary italic">System Architecture High-Level Overview</span>
+</div>
+</div>
+</section>
+<section>
+<h3 class="text-lg font-bold text-white font-display mb-4">Key Implementation Modules</h3>
+<div class="grid md:grid-cols-2 gap-4">
+<div class="glass-panel p-4 rounded-lg hover:border-ai-accent/30 transition-colors">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-ai-accent mt-1">description</span>
+<div>
+<h4 class="text-sm font-bold text-white mb-1">Semantic Parsing</h4>
+<p class="text-xs text-text-secondary leading-relaxed">Custom parser for PDF tables and financial charts, preserving structural context before vectorization.</p>
+</div>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-lg hover:border-ai-accent/30 transition-colors">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">verified_user</span>
+<div>
+<h4 class="text-sm font-bold text-white mb-1">Hallucination Guardrails</h4>
+<p class="text-xs text-text-secondary leading-relaxed">Implemented a citation layer that forces the model to link every assertion back to a specific source document page.</p>
+</div>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-lg hover:border-ai-accent/30 transition-colors">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-purple-400 mt-1">memory</span>
+<div>
+<h4 class="text-sm font-bold text-white mb-1">Context Window Optimization</h4>
+<p class="text-xs text-text-secondary leading-relaxed">Dynamic context injection strategies to handle large 10-K filings within token limits.</p>
+</div>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-lg hover:border-ai-accent/30 transition-colors">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-400 mt-1">speed</span>
+<div>
+<h4 class="text-sm font-bold text-white mb-1">Low-Latency API</h4>
+<p class="text-xs text-text-secondary leading-relaxed">Optimized FastAPI backend serving responses in under 200ms for cached queries.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-8">
+<div class="flex items-center gap-3 mb-6">
+<span class="p-2 rounded-lg bg-surface-dark border border-white/5 text-emerald-400">
+<span class="material-symbols-outlined text-xl">trending_up</span>
+</span>
+<h2 class="text-2xl font-bold text-white font-display">Project Outcomes</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-panel rounded-xl p-6 text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-ai-accent to-transparent"></div>
+<span class="block text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">40%</span>
+<span class="text-xs font-mono text-text-secondary uppercase tracking-wider">Reduction in Report Time</span>
+</div>
+<div class="glass-panel rounded-xl p-6 text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<span class="block text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">$2M+</span>
+<span class="text-xs font-mono text-text-secondary uppercase tracking-wider">Annual OpEx Savings</span>
+</div>
+<div class="glass-panel rounded-xl p-6 text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+<span class="block text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">95%</span>
+<span class="text-xs font-mono text-text-secondary uppercase tracking-wider">Data Retrieval Accuracy</span>
+</div>
+</div>
+</section>
+<div class="flex justify-between mt-16 pt-8 border-t border-white/5">
+<a class="group flex flex-col items-start gap-1" href="#">
+<span class="text-[10px] font-mono text-text-secondary uppercase">Previous Project</span>
+<span class="text-lg font-bold text-white group-hover:text-ai-accent transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base transition-transform group-hover:-translate-x-1">arrow_back</span>
+                             HealthBot Protocol
+                        </span>
+</a>
+<a class="group flex flex-col items-end gap-1" href="#">
+<span class="text-[10px] font-mono text-text-secondary uppercase">Next Project</span>
+<span class="text-lg font-bold text-white group-hover:text-ai-accent transition-colors flex items-center gap-2">
+                             Smart Inventory AI
+                             <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
+</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-surface-darker py-12 border-t border-white/10 px-6 relative z-10 overflow-hidden">
+<div class="absolute inset-0 bg-[size:40px_40px] bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-ai-accent shadow-[0_0_8px_rgba(6,182,212,0.6)]"></span>
+<span class="text-sm font-bold text-white font-display">Chirag Jha</span>
+</div>
+<span class="text-xs text-text-secondary font-mono">© 2024. Architecting Intelligence.</span>
+</div>
+<div class="flex gap-8">
+<a class="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group" href="#">
+                    LinkedIn 
+                    <span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent">arrow_outward</span>
+</a>
+<a class="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group" href="#">
+                    Substack
+                     <span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent">arrow_outward</span>
+</a>
+<a class="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group" href="#">
+                    GitHub
+                     <span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent">arrow_outward</span>
+</a>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

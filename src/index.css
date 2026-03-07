@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .glass-panel {
+    @apply bg-surface-dark/40 backdrop-blur-md border border-white/10;
+  }
+  .glass-panel-hover {
+    @apply hover:bg-surface-dark/60 hover:border-ai-accent/30 transition-all duration-300;
+  }
+  .text-glow {
+    text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+  }
+  .tech-tag {
+    @apply px-3 py-1.5 rounded-md bg-surface-darker/50 border border-white/10 text-xs font-mono text-text-secondary flex items-center gap-2 hover:border-ai-accent/40 hover:text-white transition-colors cursor-default;
+  }
+}
+
+body {
+  @apply bg-background-dark text-white font-display overflow-x-hidden selection:bg-ai-accent selection:text-white;
+}
+
