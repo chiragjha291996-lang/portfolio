@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
+      '/.netlify/functions': {
+        target: 'http://localhost:8888',
         changeOrigin: true,
       },
     },

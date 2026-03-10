@@ -37,7 +37,7 @@ function buildSystemPrompt(projectContext, cvContext) {
 export async function* chatWithGemini(messages, projectContext, cvContext, options = {}) {
   const systemPrompt = buildSystemPrompt(projectContext, cvContext);
 
-  const res = await fetch('/api/chat', {
+  const res = await fetch('/.netlify/functions/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ messages, systemPrompt }),
