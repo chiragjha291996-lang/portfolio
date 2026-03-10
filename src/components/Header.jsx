@@ -44,14 +44,15 @@ function Header() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-ai-accent to-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
             )}
           </Link>
-          <a href="#" className="text-sm font-medium text-text-secondary hover:text-white transition-colors relative group py-2">
-            Philosophy
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-ai-accent to-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
-          </a>
-          <a href="#" className="text-sm font-medium text-text-secondary hover:text-white transition-colors relative group py-2">
+          <Link to="/contact" className={`text-sm font-medium transition-colors relative group py-2 ${isActive('/contact') ? 'text-white' : 'text-text-secondary hover:text-white'}`}>
             Contact
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-ai-accent to-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
-          </a>
+            {isActive('/contact') && (
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-ai-accent to-primary transition-all duration-300 shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
+            )}
+            {!isActive('/contact') && (
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-ai-accent to-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
+            )}
+          </Link>
         </nav>
         <button className="md:hidden text-white ml-auto p-2 hover:bg-white/5 rounded-lg transition-colors border border-transparent hover:border-white/10">
           <span className="material-symbols-outlined">menu</span>

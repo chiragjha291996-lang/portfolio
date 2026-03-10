@@ -118,7 +118,6 @@ function FloatingChat({ project }) {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {isOpen && (
         <div className="w-[360px] h-[520px] glass-panel rounded-2xl border border-white/10 shadow-2xl shadow-black/40 flex flex-col overflow-hidden animate-[slideUp_0.3s_ease-out]">
-          {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-surface-darker/90 backdrop-blur-md">
             <div className="flex items-center gap-2 min-w-0">
               <span className="material-symbols-outlined text-ai-accent text-lg">smart_toy</span>
@@ -134,8 +133,6 @@ function FloatingChat({ project }) {
               <span className="material-symbols-outlined text-lg">close</span>
             </button>
           </div>
-
-          {/* Messages */}
           <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 scrollbar-thin">
             {messages.length === 0 && (
               <div className="flex flex-col items-center justify-center h-full gap-4 text-center px-2">
@@ -156,7 +153,6 @@ function FloatingChat({ project }) {
                 </div>
               </div>
             )}
-
             {messages.map((msg, i) => (
               <div
                 key={i}
@@ -181,8 +177,6 @@ function FloatingChat({ project }) {
             ))}
             <div ref={messagesEndRef} />
           </div>
-
-          {/* Input */}
           <form onSubmit={handleSubmit} className="px-3 py-3 border-t border-white/10 bg-surface-darker/90 backdrop-blur-md">
             <div className="flex items-center gap-2 bg-surface-dark/80 rounded-lg border border-white/5 focus-within:border-ai-accent/30 transition-colors px-3">
               <input
@@ -206,8 +200,6 @@ function FloatingChat({ project }) {
           </form>
         </div>
       )}
-
-      {/* Floating Bubble */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`group w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-ai-accent/20 transition-all duration-300 ${

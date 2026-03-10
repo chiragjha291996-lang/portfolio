@@ -11,16 +11,24 @@ function Footer() {
           </div>
           <span className="text-xs text-text-secondary font-mono">Architecting Intelligence.</span>
         </div>
-        <div className="flex gap-8">
-          <a href="#" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
-            LinkedIn 
+        <div className="flex flex-wrap items-center gap-6 md:gap-8">
+          <a href="mailto:chiragjha291996@gmail.com" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
+            chiragjha291996@gmail.com
             <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent">arrow_outward</span>
           </a>
-          <a href="#" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
-            Substack
+          <a href="tel:+917259918923" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
+            +91 72599 18923
             <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent">arrow_outward</span>
           </a>
-          <a href="#" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
+          <a href="https://www.linkedin.com/in/chiragjha" target="_blank" rel="noopener noreferrer" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
+            LinkedIn
+            <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent">arrow_outward</span>
+          </a>
+          <a href="https://chiragjha1996.wordpress.com" target="_blank" rel="noopener noreferrer" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
+            Blog
+            <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent">arrow_outward</span>
+          </a>
+          <a href="https://github.com/chiragjha291996-lang/all_projects" target="_blank" rel="noopener noreferrer" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
             GitHub
             <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent">arrow_outward</span>
           </a>

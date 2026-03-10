@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import BackgroundEffects from '../components/BackgroundEffects';
 import ProjectCard from '../components/ProjectCard';
+import HomeChatBox from '../components/HomeChatBox';
 import { projects } from '../data/projects';
 
 function HomePage() {
@@ -23,33 +24,7 @@ function HomePage() {
             Senior Consultant at PwC. Architecting the future at the intersection of Generative AI, Product Strategy, and Enterprise Transformation.
           </p>
         </div>
-        <div className="w-full max-w-2xl relative group perspective-1000 mx-auto z-20">
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary via-ai-accent to-primary rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-700 animate-pulse-slow"></div>
-          <div className="relative glass-panel rounded-xl overflow-hidden shadow-2xl flex flex-col p-1 animate-expand-width mx-auto">
-            <div className="relative flex items-center w-full bg-surface-darker/80 rounded-lg overflow-hidden border border-white/5">
-              <span className="material-symbols-outlined text-text-secondary pl-4 text-xl">temp_preferences_custom</span>
-              <input 
-                className="w-full bg-transparent border-none py-4 pl-3 pr-14 text-base text-white placeholder-text-secondary/50 focus:ring-0 font-body" 
-                placeholder="Ask my digital twin about my experience..." 
-                type="text"
-              />
-              <button className="absolute right-2 p-2 bg-gradient-to-r from-primary to-ai-accent hover:opacity-90 text-white rounded-lg transition-all flex items-center justify-center shadow-lg shadow-ai-accent/20">
-                <span className="material-symbols-outlined text-lg">arrow_upward</span>
-              </button>
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3 mt-6 opacity-0 animate-[float_1s_ease-out_0.5s_forwards] fill-mode-forwards" style={{animationFillMode: 'forwards'}}>
-            <button className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-ai-accent/50 hover:bg-white/10 text-xs font-mono text-text-secondary hover:text-white transition-all cursor-pointer flex items-center gap-2">
-              <span className="material-symbols-outlined text-[14px]">history_edu</span> Strategy projects
-            </button>
-            <button className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-ai-accent/50 hover:bg-white/10 text-xs font-mono text-text-secondary hover:text-white transition-all cursor-pointer flex items-center gap-2">
-              <span className="material-symbols-outlined text-[14px]">groups</span> Program management work
-            </button>
-            <button className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-ai-accent/50 hover:bg-white/10 text-xs font-mono text-text-secondary hover:text-white transition-all cursor-pointer flex items-center gap-2">
-              <span className="material-symbols-outlined text-[14px]">rocket_launch</span> Personal projects
-            </button>
-          </div>
-        </div>
+        <HomeChatBox />
         <div className="w-full max-w-7xl mt-24 border-t border-white/5"></div>
       </main>
       <section className="w-full bg-surface-darker py-24 px-6 relative" id="expertise">
