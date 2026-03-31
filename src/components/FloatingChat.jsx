@@ -115,9 +115,9 @@ function FloatingChat({ project }) {
   if (project.isPlaceholder) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3">
       {isOpen && (
-        <div className="w-[360px] h-[520px] glass-panel rounded-2xl border border-white/10 shadow-2xl shadow-black/40 flex flex-col overflow-hidden animate-[slideUp_0.3s_ease-out]">
+        <div className="w-[calc(100vw-2rem)] max-w-[360px] h-[520px] max-h-[calc(100vh-6rem)] glass-panel rounded-2xl border border-white/10 shadow-2xl shadow-black/40 flex flex-col overflow-hidden animate-[slideUp_0.3s_ease-out]">
           <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-surface-darker/90 backdrop-blur-md">
             <div className="flex items-center gap-2 min-w-0">
               <span className="material-symbols-outlined text-ai-accent text-lg">smart_toy</span>

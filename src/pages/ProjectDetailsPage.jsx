@@ -1,7 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import BackgroundEffects from '../components/BackgroundEffects';
 import TechTag from '../components/TechTag';
-import FloatingChat from '../components/FloatingChat';
 import { getProjectById, projects } from '../data/projects';
 
 function ProjectDetailsPage() {
@@ -204,24 +203,24 @@ function ProjectDetailsPage() {
                 </div>
               </section>
             )}
-            <div className="flex justify-between mt-16 pt-8 border-t border-white/5">
+            <div className="flex justify-between mt-16 pt-8 border-t border-white/5 gap-4">
               {prevProject ? (
-                <Link to={`/projects/${prevProject.id}`} className="group flex flex-col items-start gap-1">
+                <Link to={`/projects/${prevProject.id}`} className="group flex flex-col items-start gap-1 min-w-0 max-w-[45%]">
                   <span className="text-[10px] font-mono text-text-secondary uppercase">Previous Project</span>
-                  <span className="text-lg font-bold text-white group-hover:text-ai-accent transition-colors flex items-center gap-2">
-                    <span className="material-symbols-outlined text-base transition-transform group-hover:-translate-x-1">arrow_back</span>
-                    {prevProject.title}
+                  <span className="text-base sm:text-lg font-bold text-white group-hover:text-ai-accent transition-colors flex items-center gap-2 min-w-0">
+                    <span className="material-symbols-outlined text-base transition-transform group-hover:-translate-x-1 shrink-0">arrow_back</span>
+                    <span className="truncate">{prevProject.title}</span>
                   </span>
                 </Link>
               ) : (
                 <div></div>
               )}
               {nextProject && (
-                <Link to={`/projects/${nextProject.id}`} className="group flex flex-col items-end gap-1">
+                <Link to={`/projects/${nextProject.id}`} className="group flex flex-col items-end gap-1 min-w-0 max-w-[45%]">
                   <span className="text-[10px] font-mono text-text-secondary uppercase">Next Project</span>
-                  <span className="text-lg font-bold text-white group-hover:text-ai-accent transition-colors flex items-center gap-2">
-                    {nextProject.title}
-                    <span className="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
+                  <span className="text-base sm:text-lg font-bold text-white group-hover:text-ai-accent transition-colors flex items-center gap-2 min-w-0">
+                    <span className="truncate">{nextProject.title}</span>
+                    <span className="material-symbols-outlined text-base transition-transform group-hover:translate-x-1 shrink-0">arrow_forward</span>
                   </span>
                 </Link>
               )}
@@ -229,7 +228,6 @@ function ProjectDetailsPage() {
           </div>
         </div>
       </main>
-      <FloatingChat project={project} />
     </div>
   );
 }

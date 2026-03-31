@@ -20,7 +20,7 @@ function ContactPage() {
             Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-ai-accent to-primary">Chirag</span>
           </h1>
           <p className="text-text-secondary text-lg font-body leading-relaxed mb-12">
-            Available for new opportunities. Reach out via email, phone, or connect on LinkedIn.
+            Available for new opportunities. Reach out via email or connect on LinkedIn.
           </p>
           <div className="space-y-6">
             <a
@@ -37,20 +37,7 @@ function ContactPage() {
               <span className="material-symbols-outlined text-text-secondary ml-auto group-hover:text-ai-accent transition-colors">arrow_outward</span>
             </a>
             <a
-              href="tel:+917259918923"
-              className="flex items-center gap-4 p-4 rounded-xl glass-panel border border-white/10 hover:border-ai-accent/30 transition-colors group"
-            >
-              <span className="p-2 rounded-lg bg-surface-dark border border-white/5 text-ai-accent group-hover:bg-ai-accent/10 transition-colors">
-                <span className="material-symbols-outlined text-xl">phone</span>
-              </span>
-              <div>
-                <span className="text-xs font-mono text-text-secondary uppercase tracking-wider block mb-0.5">Phone</span>
-                <span className="text-white font-medium group-hover:text-ai-accent transition-colors">+91 72599 18923</span>
-              </div>
-              <span className="material-symbols-outlined text-text-secondary ml-auto group-hover:text-ai-accent transition-colors">arrow_outward</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/chiragjha"
+              href="https://www.linkedin.com/in/chirag-jha-pat/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 rounded-xl glass-panel border border-white/10 hover:border-ai-accent/30 transition-colors group"
@@ -60,7 +47,7 @@ function ContactPage() {
               </span>
               <div>
                 <span className="text-xs font-mono text-text-secondary uppercase tracking-wider block mb-0.5">LinkedIn</span>
-                <span className="text-white font-medium group-hover:text-ai-accent transition-colors">linkedin.com/in/chiragjha</span>
+                <span className="text-white font-medium group-hover:text-ai-accent transition-colors">linkedin.com/in/chirag-jha-pat</span>
               </div>
               <span className="material-symbols-outlined text-text-secondary ml-auto group-hover:text-ai-accent transition-colors">arrow_outward</span>
             </a>
