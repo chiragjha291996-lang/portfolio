@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import BackgroundEffects from '../components/BackgroundEffects';
 import ProjectCard from '../components/ProjectCard';
-import HomeChatBox from '../components/HomeChatBox';
 import { projects } from '../data/projects';
 
 function HomePage() {
@@ -24,7 +23,6 @@ function HomePage() {
             Senior Consultant at PwC. Architecting the future at the intersection of Generative AI, Product Strategy, and Enterprise Transformation.
           </p>
         </div>
-        <HomeChatBox />
         <div className="w-full max-w-7xl mt-24 border-t border-white/5"></div>
       </main>
       <section className="w-full bg-surface-darker py-24 px-6 relative" id="expertise">

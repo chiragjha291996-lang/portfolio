@@ -3,26 +3,28 @@ import BackgroundEffects from '../components/BackgroundEffects';
 import ProjectCard from '../components/ProjectCard';
 import { projects, CATEGORIES } from '../data/projects';
 
-const FILTER_TABS = [
+const WORK_FILTER_TABS = [
   CATEGORIES.ALL,
   CATEGORIES.PROGRAM_MANAGEMENT,
   CATEGORIES.STRATEGY,
-  CATEGORIES.PERSONAL_PROJECT,
 ];
 
 function AllProjectsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filter, setFilter] = useState(CATEGORIES.ALL);
 
-  const filteredProjects = projects.filter(project => {
-    const matchesSearch = searchQuery === '' || 
+  const personalProjects = projects.filter(p => p.category === CATEGORIES.PERSONAL_PROJECT);
+  const workProjects = projects.filter(p => p.category !== CATEGORIES.PERSONAL_PROJECT);
+
+  const filteredWorkProjects = workProjects.filter(project => {
+    const matchesSearch = searchQuery === '' ||
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
       project.category.toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     const matchesFilter = filter === CATEGORIES.ALL || project.category === filter;
-    
+
     return matchesSearch && matchesFilter;
   });
 
@@ -42,19 +44,54 @@ function AllProjectsPage() {
             A curated list of AI implementations across various sectors. Each project represents a unique challenge in bringing intelligence to complex systems.
           </p>
         </div>
-        <div className="w-full mb-16 relative z-20 animate-[float_4s_ease-in-out_infinite] opacity-0" style={{animation: 'expandWidth 0.8s ease-out 0.3s forwards'}}>
+
+        {/* Personal Projects Section */}
+        {personalProjects.length > 0 && (
+          <section className="mb-20">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="p-2 rounded-lg bg-surface-dark border border-white/5 text-ai-accent">
+                <span className="material-symbols-outlined text-xl">science</span>
+              </span>
+              <div>
+                <h2 className="text-2xl font-bold text-white font-display">Personal Projects</h2>
+                <p className="text-xs font-mono text-text-secondary mt-0.5">Research-driven builds & side ventures</p>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {personalProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Divider */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-16"></div>
+
+        {/* Professional Work Section */}
+        <div className="flex items-center gap-3 mb-8">
+          <span className="p-2 rounded-lg bg-surface-dark border border-white/5 text-primary">
+            <span className="material-symbols-outlined text-xl">work</span>
+          </span>
+          <div>
+            <h2 className="text-2xl font-bold text-white font-display">Professional Work</h2>
+            <p className="text-xs font-mono text-text-secondary mt-0.5">Enterprise engagements & consulting</p>
+          </div>
+        </div>
+
+        <div className="w-full mb-10 relative z-20 animate-[float_4s_ease-in-out_infinite] opacity-0" style={{animation: 'expandWidth 0.8s ease-out 0.3s forwards'}}>
           <div className="relative glass-panel rounded-xl overflow-hidden shadow-lg p-1">
             <div className="relative flex items-center w-full bg-surface-darker/80 rounded-lg overflow-hidden border border-white/5 group-focus-within:border-ai-accent/30 transition-colors">
               <span className="material-symbols-outlined text-text-secondary pl-4 text-xl">filter_list</span>
-              <input 
-                className="w-full bg-transparent border-none py-4 pl-3 pr-4 text-sm md:text-base text-white placeholder-text-secondary/50 focus:ring-0 font-mono" 
-                placeholder="Filter projects by technology (e.g., RAG, LLM), industry, or outcome..." 
+              <input
+                className="w-full bg-transparent border-none py-4 pl-3 pr-4 text-sm md:text-base text-white placeholder-text-secondary/50 focus:ring-0 font-mono"
+                placeholder="Filter projects by technology (e.g., RAG, LLM), industry, or outcome..."
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <div className="hidden md:flex items-center pr-2 gap-2">
-                {FILTER_TABS.map((tab) => (
+                {WORK_FILTER_TABS.map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setFilter(tab)}
@@ -72,7 +109,7 @@ function AllProjectsPage() {
           </div>
           {/* Mobile filter tabs */}
           <div className="flex md:hidden items-center gap-2 mt-3 overflow-x-auto pb-2">
-            {FILTER_TABS.map((tab) => (
+            {WORK_FILTER_TABS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFilter(tab)}
@@ -88,11 +125,11 @@ function AllProjectsPage() {
           </div>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
+          {filteredWorkProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
-        {filteredProjects.length === 0 && (
+        {filteredWorkProjects.length === 0 && (
           <div className="text-center py-12">
             <p className="text-text-secondary">No projects found matching your criteria.</p>
           </div>
