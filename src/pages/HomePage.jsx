@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import BackgroundEffects from '../components/BackgroundEffects';
 import ProjectCard from '../components/ProjectCard';
-import { projects } from '../data/projects';
+import { projects, CATEGORIES } from '../data/projects';
 
 function HomePage() {
-  const featuredProjects = projects.filter(p => !p.isPlaceholder).slice(0, 3);
+  const personalProjects = projects.filter(p => p.category === CATEGORIES.PERSONAL_PROJECT && !p.isPlaceholder);
+  const featuredProjects = projects.filter(p => !p.isPlaceholder && p.category !== CATEGORIES.PERSONAL_PROJECT).slice(0, 3);
 
   return (
     <div className="relative flex min-h-screen w-full flex-col">
@@ -25,6 +26,27 @@ function HomePage() {
         </div>
         <div className="w-full max-w-7xl mt-24 border-t border-white/5"></div>
       </main>
+      {personalProjects.length > 0 && (
+        <section className="w-full py-24 px-6 relative">
+          <div className="max-w-7xl mx-auto flex flex-col gap-10 relative z-10">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white tracking-tight">
+                  Personal <span className="text-ai-accent">Projects</span>
+                </h2>
+                <p className="text-text-secondary text-lg max-w-xl font-body">
+                  Research-driven builds and side ventures — shipping ideas from paper to prototype.
+                </p>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {personalProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} showFullHeight={true} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
       <section className="w-full bg-surface-darker py-24 px-6 relative" id="expertise">
         <div className="absolute inset-0 bg-[size:40px_40px] bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto flex flex-col gap-16 relative z-10">
