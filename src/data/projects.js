@@ -301,6 +301,7 @@ export const projects = [
     description:
       'In the United States, SOP discrepancies are the single largest category of FDA flags in the pharmaceutical industry. I built a research-driven MVP for a document intelligence system that identifies structural discrepancies across SOPs and generates auto-remediations using LLMs.',
     image: '/sop-discrepancy-hero.png',
+    liveUrl: 'https://sopstandardizer.netlify.app/',
     tags: ['LLM Pipelines', 'Graph ML', 'Pharma / Compliance'],
     client: 'Personal Research Project',
     timeline: '2026',

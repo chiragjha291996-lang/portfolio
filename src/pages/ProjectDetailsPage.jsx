@@ -93,6 +93,25 @@ function ProjectDetailsPage() {
                 </div>
               </div>
             )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-panel glass-panel-hover rounded-xl p-5 flex items-center justify-between gap-3 group transition-all hover:border-ai-accent/30"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="p-2 rounded-lg bg-ai-accent/10 border border-ai-accent/20 text-ai-accent">
+                    <span className="material-symbols-outlined text-xl">rocket_launch</span>
+                  </span>
+                  <div>
+                    <span className="text-sm font-bold text-white block">Live MVP</span>
+                    <span className="text-xs font-mono text-text-secondary">sopstandardizer.netlify.app</span>
+                  </div>
+                </div>
+                <span className="material-symbols-outlined text-text-secondary group-hover:text-ai-accent transition-colors">open_in_new</span>
+              </a>
+            )}
           </div>
           <div className="lg:col-span-8 space-y-12">
             {project.problem && (
