@@ -294,14 +294,105 @@ export const projects = [
     chatContext: `Project: D15 Retention Growth Campaign. Category: Strategy. Company: InfoEdge India (Naukri Learning). Role: Marketing Intern. Timeline: April 2022 - May 2022. Description: Achieved a 4% improvement in D15 retention, increasing from 2.52% to 6.52%, via conceptualization and execution of email campaign. Achieved average Click-Through Rate of 4.6%, surpassing brand's average of 2%, across a customer base exceeding 20,000 individuals. Conducted comprehensive marketing research by conducting in-depth interviews with over 40 customers. Key skills: User research, email marketing, retention strategy, data analysis, campaign execution.`,
   },
   {
-    id: 'personal-project-1',
-    title: 'Coming Soon',
+    id: 'sop-discrepancy-engine',
+    title: 'SOP Discrepancy Engine',
+    heroBadge: 'DOCUMENT INTELLIGENCE SYSTEM',
     category: CATEGORIES.PERSONAL_PROJECT,
-    description: 'A personal project currently in development. Check back soon for details.',
-    image: '',
-    tags: ['Personal', 'In Progress'],
-    isPlaceholder: true,
-    chatContext: '',
+    description:
+      'In the United States, SOP discrepancies are the single largest category of FDA observations in the pharmaceutical industry. I built a research-driven MVP for a document intelligence system that identifies structural discrepancies across SOPs and generates auto-remediations using LLMs.',
+    image: '/sop-discrepancy-hero.png',
+    tags: ['LLM Pipelines', 'Graph ML', 'Pharma / Compliance'],
+    client: 'Personal Research Project',
+    timeline: '2026',
+    role: 'Personal Project',
+    teamSize: 'Solo',
+    problemIconName: 'help',
+    problemIconClass: 'text-purple-400',
+    solutionIconName: 'device_hub',
+    solutionIconClass: 'text-purple-400',
+    solutionDiagram: 'sop-pipeline',
+    techStack: [
+      { name: 'Python', color: 'bg-blue-500' },
+      { name: 'GPT-4o', color: 'bg-emerald-500' },
+      { name: 'Graph Construction', color: 'bg-purple-500' },
+      { name: 'Pydantic', color: 'bg-teal-500' },
+      { name: 'LLM Pipelines', color: 'bg-amber-500' },
+    ],
+    problem: [
+      'SOP discrepancies are the biggest category of FDA observations in the pharmaceutical industry. Audits usually involve hundreds of man-hours, done either by in-house quality teams or by hiring consulting firms at a cost of thousands of dollars. Any change in an SOP — a regulatory update, a CAPA, an internal process revision — requires manual comparisons across every downstream document it touches, and no system exists to do this automatically.',
+      'In practice, audits are done in spreadsheets or Word redlines. A single regulatory change can trigger reviews across dozens of SOPs, each 15–40 pages long. The work takes days to weeks, is bottlenecked by a handful of subject-matter experts, and still misses discrepancies — terminology drift between documents, silently reordered steps, or causal assumptions that no longer hold after an upstream SOP was revised. A missed discrepancy that reaches an FDA inspection can result in warning letters, consent decrees, or production shutdowns.',
+    ],
+    problemHighlights: [
+      { icon: 'gavel', label: '#1 FDA observation category', color: 'text-red-400' },
+      { icon: 'schedule', label: 'Days to weeks per audit cycle', color: 'text-amber-400' },
+      { icon: 'group', label: 'Hundreds of man-hours', color: 'text-blue-400' },
+      { icon: 'warning', label: 'Warning letters & shutdowns', color: 'text-orange-400' },
+    ],
+    solutionSections: [
+      {
+        heading: 'Research Foundation',
+        text: 'I started from two recent research directions: SOPRAG (Lin et al., arXiv:2602.01858), which decomposes industrial SOPs into entity, causal, and flow graph "experts" for retrieval, and SOPStruct (Garg et al., arXiv:2504.00029), which uses LLMs to convert unstructured procedures into structured plans.',
+      },
+      {
+        heading: 'Extraction Pipeline',
+        text: 'My implementation adapts these ideas into a discrepancy-detection pipeline. Each SOP is processed through three parallel extraction stages — an entity graph capturing equipment, roles, and parameters; a causal graph capturing cause–effect relationships; and a flow graph capturing ordered procedural steps. Extraction uses GPT-4o with Pydantic-enforced structured outputs so every node and edge conforms to a typed schema before it enters the comparison layer.',
+      },
+      {
+        heading: 'Comparison & Output',
+        text: 'The comparison stage pairs corresponding graphs across two SOPs and prompts GPT-4o to identify five discrepancy classes: terminology drift, missing entities, reordered or missing steps, broken causal chains, and contradictory conditions. Each finding is severity-weighted and traceable back to the source paragraph. The final output is a structured discrepancy report with scoped remediation suggestions — not just "these differ," but "here is the specific text that needs revision and why."',
+      },
+    ],
+    solution: null,
+    citations: [
+      {
+        label:
+          'Garg, D., Zeng, S., Ganesh, S., & Ardon, L. Generating Structured Plan Representation of Procedures with LLMs. arXiv:2504.00029v1 (2025).',
+        url: 'https://arxiv.org/html/2504.00029v1',
+      },
+      {
+        label:
+          'Lin, L., Zhu, Z., Zhang, T., & Wen, Y. SOPRAG: Multi-view Graph Experts Retrieval for Industrial Standard Operating Procedures. arXiv:2602.01858 (2026).',
+        url: 'https://arxiv.org/pdf/2602.01858',
+      },
+    ],
+    outcomes: [
+      { label: 'Discrepancies detected', value: '23' },
+      { label: 'Graph types', value: '3' },
+      { label: 'Faster vs manual', value: '20%+' },
+    ],
+    outcomesHeaderIcon: 'auto_fix_high',
+    outcomesHeaderIconClass: 'text-amber-400',
+    modules: [
+      {
+        icon: 'schema',
+        title: 'Graph Construction Pipeline',
+        description:
+          'Each SOP is fed through three parallel LLM extraction stages. Prompts are paired with Pydantic schemas and the OpenAI structured-outputs API to guarantee typed, validated graph objects. The entity graph captures equipment, roles, and parameters; the causal graph captures if-then dependencies; the flow graph captures the ordered step sequence. Schema validation rejects malformed extractions before they reach downstream comparison.',
+        color: 'text-blue-400',
+      },
+      {
+        icon: 'manage_search',
+        title: 'Discrepancy Detection',
+        description:
+          'Pairs of corresponding graphs are compared with GPT-4o across five discrepancy classes: terminology drift, missing or extra entities, reordered steps, broken causal chains, and contradictory pre/post-conditions. Each finding is severity-weighted (critical / major / minor) and includes the source paragraph from both SOPs, so reviewers can triage without re-reading the full documents.',
+        color: 'text-slate-300',
+      },
+      {
+        icon: 'fact_check',
+        title: 'Evaluation & Grounding',
+        description:
+          'Every extracted node and edge is traced back to its source sentence via character-offset anchors. Structural sanity checks verify graph connectivity (no orphan nodes, no cycles in the flow graph). This grounding layer ensures the system never hallucinates entities or relationships that don\'t exist in the original SOP text.',
+        color: 'text-emerald-400',
+      },
+      {
+        icon: 'lightbulb',
+        title: 'Remediation Engine',
+        description:
+          'For each detected discrepancy, the system generates a scoped remediation suggestion: the specific SOP section to revise, the nature of the inconsistency, and a draft rewrite. Suggestions are ranked by severity and grouped by SOP, giving quality teams a prioritized action list rather than an undifferentiated list of differences.',
+        color: 'text-amber-300',
+      },
+    ],
+    chatContext: `Project: SOP Discrepancy Engine. Category: Personal Project. SOP discrepancies are the largest category of FDA observations in pharma. Built a research-driven MVP for a document intelligence system that identifies structural discrepancies across SOPs and generates auto-remediations using LLMs. Informed by SOPRAG (arXiv:2602.01858) and SOPStruct (arXiv:2504.00029v1). Citations: https://arxiv.org/html/2504.00029v1 and https://arxiv.org/pdf/2602.01858. Solo. Pipeline: three parallel graph extraction stages (entity, causal, flow) with Pydantic-enforced structured outputs via GPT-4o, then pairwise comparison across five discrepancy classes (terminology drift, missing entities, reordered steps, broken causal chains, contradictory conditions), severity-weighted findings traceable to source paragraphs, and scoped remediation suggestions. Tech: Python, Pydantic, GPT-4o, graph construction, LLM pipelines. Outcomes: 23 discrepancies detected, 3 graph types, 20%+ faster than manual review. Document intelligence, compliance, structured outputs, discrepancy detection, remediation engine.`,
   },
   {
     id: 'personal-project-2',

@@ -48,7 +48,7 @@ function ProjectDetailsPage() {
           <div className="relative z-20 p-8 md:p-12 lg:p-16 flex flex-col gap-6 max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ai-accent/10 border border-ai-accent/20 text-xs font-mono text-ai-accent w-fit">
               <span className="material-symbols-outlined text-sm">workspace_premium</span>
-              {project.category.toUpperCase()} SOLUTION
+              {project.heroBadge ?? `${project.category.toUpperCase()} SOLUTION`}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1]">
               {project.title.split(' ').slice(0, -1).join(' ')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-ai-accent to-primary text-glow">{project.title.split(' ').slice(-1).join(' ')}</span>
@@ -98,90 +98,190 @@ function ProjectDetailsPage() {
             {project.problem && (
               <section>
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="p-2 rounded-lg bg-surface-dark border border-white/5 text-ai-accent">
-                    <span className="material-symbols-outlined text-xl">psychology_alt</span>
+                  <span className={`p-2 rounded-lg bg-surface-dark border border-white/5 ${project.problemIconClass ?? 'text-ai-accent'}`}>
+                    <span className="material-symbols-outlined text-xl">{project.problemIconName ?? 'psychology_alt'}</span>
                   </span>
                   <h2 className="text-2xl font-bold text-white font-display">The Problem Statement</h2>
                 </div>
                 <div className="prose prose-invert prose-lg text-text-secondary leading-relaxed font-body">
-                  <p>{project.problem}</p>
+                  {(Array.isArray(project.problem) ? project.problem : [project.problem]).map((para, i) => (
+                    <p key={i} className="mb-4 last:mb-0">{para}</p>
+                  ))}
                 </div>
+                {project.problemHighlights && (
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+                    {project.problemHighlights.map((h, i) => (
+                      <div key={i} className="glass-panel rounded-lg p-3 flex items-center gap-3">
+                        <span className={`material-symbols-outlined text-xl ${h.color} shrink-0`}>{h.icon}</span>
+                        <span className="text-xs font-mono text-text-secondary leading-snug">{h.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </section>
             )}
-            {project.solution && (
+            {(project.solution || project.solutionSections) && (
               <>
                 <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
                 <section>
                   <div className="flex items-center gap-3 mb-6">
-                    <span className="p-2 rounded-lg bg-surface-dark border border-white/5 text-primary">
-                      <span className="material-symbols-outlined text-xl">hub</span>
+                    <span className={`p-2 rounded-lg bg-surface-dark border border-white/5 ${project.solutionIconClass ?? 'text-primary'}`}>
+                      <span className="material-symbols-outlined text-xl">{project.solutionIconName ?? 'hub'}</span>
                     </span>
                     <h2 className="text-2xl font-bold text-white font-display">The Solution</h2>
                   </div>
-                  <p className="text-text-secondary leading-relaxed mb-8 font-body">
-                    {project.solution}
-                  </p>
-                  <div className="w-full rounded-xl bg-surface-darker border border-white/10 p-6 relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-[size:20px_20px] bg-grid-pattern opacity-10"></div>
-                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 py-8 px-4">
-                      <div className="flex flex-col items-center gap-2 w-32">
-                        <div className="w-16 h-16 rounded-xl bg-surface-dark border border-white/10 flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.05)]">
-                          <span className="material-symbols-outlined text-2xl text-text-secondary">person</span>
+                  {project.solutionSections ? (
+                    <div className="space-y-6 mb-8">
+                      {project.solutionSections.map((s, i) => (
+                        <div key={i}>
+                          <h3 className="text-sm font-mono text-ai-accent uppercase tracking-wider mb-2">{s.heading}</h3>
+                          <p className="text-text-secondary leading-relaxed font-body">{s.text}</p>
                         </div>
-                        <span className="text-[10px] font-mono text-text-secondary uppercase">Analyst</span>
-                      </div>
-                      <div className="h-0.5 w-12 bg-white/10 md:block hidden relative">
-                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t border-r border-white/10 rotate-45"></div>
-                      </div>
-                      <span className="material-symbols-outlined text-white/20 md:hidden">arrow_downward</span>
-                      <div className="flex flex-col items-center gap-2 relative">
-                        <div className="absolute -inset-4 bg-primary/20 blur-xl rounded-full animate-pulse-slow"></div>
-                        <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-surface-dark to-surface-darker border border-ai-accent/30 flex items-center justify-center relative z-10 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
-                          <span className="material-symbols-outlined text-3xl text-ai-accent">smart_toy</span>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="mb-8">
+                      {(Array.isArray(project.solution) ? project.solution : [project.solution]).map((para, i) => (
+                        <p key={i} className="text-text-secondary leading-relaxed font-body mb-4 last:mb-0">{para}</p>
+                      ))}
+                    </div>
+                  )}
+                  {project.solutionDiagram && (
+                    <p className="text-xs font-mono text-text-secondary uppercase tracking-widest mb-4">How it works</p>
+                  )}
+                  {project.solutionDiagram === 'sop-pipeline' ? (
+                    <div className="w-full rounded-xl bg-surface-darker border border-white/10 p-6 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-[size:20px_20px] bg-grid-pattern opacity-10" />
+                      <p className="text-center text-[10px] font-mono text-text-secondary uppercase tracking-widest mb-6 relative z-10">Pipeline architecture</p>
+                      <div className="relative z-10 flex flex-col items-center gap-3 max-w-md mx-auto">
+                        <div className="w-full rounded-lg border border-white/10 bg-surface-dark px-4 py-3 text-center">
+                          <span className="text-sm font-mono text-white">SOP text</span>
                         </div>
-                        <span className="text-[10px] font-mono text-ai-accent uppercase font-bold">Orchestrator Agent</span>
-                      </div>
-                      <div className="h-0.5 w-12 bg-white/10 md:block hidden relative">
-                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t border-r border-white/10 rotate-45"></div>
-                      </div>
-                      <span className="material-symbols-outlined text-white/20 md:hidden">arrow_downward</span>
-                      <div className="flex flex-col items-center gap-2 w-32">
-                        <div className="w-16 h-16 rounded-xl bg-surface-dark border border-white/10 flex items-center justify-center">
-                          <span className="material-symbols-outlined text-2xl text-purple-400">database</span>
+                        <span className="material-symbols-outlined text-white/30 text-lg">arrow_downward</span>
+                        <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center">
+                          {[
+                            { label: 'Entity graph', border: 'border-blue-500/40', text: 'text-blue-400' },
+                            { label: 'Causal graph', border: 'border-purple-500/40', text: 'text-purple-400' },
+                            { label: 'Flow graph', border: 'border-teal-500/40', text: 'text-teal-400' },
+                          ].map((node) => (
+                            <div
+                              key={node.label}
+                              className={`flex-1 min-w-0 rounded-lg border ${node.border} bg-surface-dark/80 px-3 py-2.5 text-center`}
+                            >
+                              <span className={`text-xs font-mono ${node.text}`}>{node.label}</span>
+                            </div>
+                          ))}
                         </div>
-                        <span className="text-[10px] font-mono text-text-secondary uppercase">Vector Knowledge</span>
+                        <span className="material-symbols-outlined text-white/30 text-lg">arrow_downward</span>
+                        <div className="w-full rounded-lg border border-ai-accent/30 bg-surface-dark px-4 py-3 text-center shadow-[0_0_20px_rgba(99,102,241,0.15)]">
+                          <span className="text-sm font-mono text-ai-accent">GPT-4o comparison</span>
+                        </div>
+                        <span className="material-symbols-outlined text-white/30 text-lg">arrow_downward</span>
+                        <div className="w-full rounded-lg border border-white/10 bg-surface-dark px-4 py-3 text-center">
+                          <span className="text-sm font-mono text-text-secondary">Discrepancy report</span>
+                        </div>
                       </div>
                     </div>
-                    <div className="text-center mt-4">
-                      <span className="text-[10px] text-text-secondary italic">System Architecture High-Level Overview</span>
+                  ) : (
+                    <div className="w-full rounded-xl bg-surface-darker border border-white/10 p-6 relative overflow-hidden group">
+                      <div className="absolute inset-0 bg-[size:20px_20px] bg-grid-pattern opacity-10"></div>
+                      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 py-8 px-4">
+                        <div className="flex flex-col items-center gap-2 w-32">
+                          <div className="w-16 h-16 rounded-xl bg-surface-dark border border-white/10 flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+                            <span className="material-symbols-outlined text-2xl text-text-secondary">person</span>
+                          </div>
+                          <span className="text-[10px] font-mono text-text-secondary uppercase">Analyst</span>
+                        </div>
+                        <div className="h-0.5 w-12 bg-white/10 md:block hidden relative">
+                          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t border-r border-white/10 rotate-45"></div>
+                        </div>
+                        <span className="material-symbols-outlined text-white/20 md:hidden">arrow_downward</span>
+                        <div className="flex flex-col items-center gap-2 relative">
+                          <div className="absolute -inset-4 bg-primary/20 blur-xl rounded-full animate-pulse-slow"></div>
+                          <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-surface-dark to-surface-darker border border-ai-accent/30 flex items-center justify-center relative z-10 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+                            <span className="material-symbols-outlined text-3xl text-ai-accent">smart_toy</span>
+                          </div>
+                          <span className="text-[10px] font-mono text-ai-accent uppercase font-bold">Orchestrator Agent</span>
+                        </div>
+                        <div className="h-0.5 w-12 bg-white/10 md:block hidden relative">
+                          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t border-r border-white/10 rotate-45"></div>
+                        </div>
+                        <span className="material-symbols-outlined text-white/20 md:hidden">arrow_downward</span>
+                        <div className="flex flex-col items-center gap-2 w-32">
+                          <div className="w-16 h-16 rounded-xl bg-surface-dark border border-white/10 flex items-center justify-center">
+                            <span className="material-symbols-outlined text-2xl text-purple-400">database</span>
+                          </div>
+                          <span className="text-[10px] font-mono text-text-secondary uppercase">Vector Knowledge</span>
+                        </div>
+                      </div>
+                      <div className="text-center mt-4">
+                        <span className="text-[10px] text-text-secondary italic">System Architecture High-Level Overview</span>
+                      </div>
                     </div>
-                  </div>
+                  )}
+                  {project.citations && project.citations.length > 0 && (
+                    <div className="mt-8 rounded-xl border border-white/10 bg-surface-darker/50 p-5">
+                      <h3 className="text-sm font-mono text-text-secondary uppercase tracking-wider mb-3">References</h3>
+                      <ol className="list-decimal list-inside space-y-2 text-sm text-text-secondary leading-relaxed font-body">
+                        {project.citations.map((c) => (
+                          <li key={c.url} className="pl-1 marker:text-text-secondary">
+                            <a
+                              href={c.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-ai-accent hover:text-white underline-offset-2 hover:underline"
+                            >
+                              {c.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  )}
                 </section>
               </>
             )}
             {project.modules && (
               <section>
                 <h3 className="text-lg font-bold text-white font-display mb-4">Key Implementation Modules</h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {project.modules.map((module, index) => (
-                    <div key={index} className="glass-panel p-4 rounded-lg hover:border-ai-accent/30 transition-colors">
-                      <div className="flex items-start gap-3">
-                        <span className={`material-symbols-outlined ${module.color} mt-1`}>{module.icon}</span>
-                        <div>
-                          <h4 className="text-sm font-bold text-white mb-1">{module.title}</h4>
-                          <p className="text-xs text-text-secondary leading-relaxed">{module.description}</p>
+                {project.solutionSections ? (
+                  <div className="space-y-4">
+                    {project.modules.map((module, index) => (
+                      <div key={index} className="glass-panel p-5 rounded-xl hover:border-ai-accent/30 transition-colors">
+                        <div className="flex items-start gap-4">
+                          <div className="p-2 rounded-lg bg-surface-dark border border-white/5 shrink-0">
+                            <span className={`material-symbols-outlined text-xl ${module.color}`}>{module.icon}</span>
+                          </div>
+                          <div>
+                            <h4 className="text-base font-bold text-white mb-1.5">{module.title}</h4>
+                            <p className="text-sm text-text-secondary leading-relaxed">{module.description}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {project.modules.map((module, index) => (
+                      <div key={index} className="glass-panel p-4 rounded-lg hover:border-ai-accent/30 transition-colors">
+                        <div className="flex items-start gap-3">
+                          <span className={`material-symbols-outlined ${module.color} mt-1`}>{module.icon}</span>
+                          <div>
+                            <h4 className="text-sm font-bold text-white mb-1">{module.title}</h4>
+                            <p className="text-xs text-text-secondary leading-relaxed">{module.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </section>
             )}
             {project.outcomes && (
               <section className="mt-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="p-2 rounded-lg bg-surface-dark border border-white/5 text-emerald-400">
-                    <span className="material-symbols-outlined text-xl">trending_up</span>
+                  <span className={`p-2 rounded-lg bg-surface-dark border border-white/5 ${project.outcomesHeaderIconClass ?? 'text-emerald-400'}`}>
+                    <span className="material-symbols-outlined text-xl">{project.outcomesHeaderIcon ?? 'trending_up'}</span>
                   </span>
                   <h2 className="text-2xl font-bold text-white font-display">Project Outcomes</h2>
                 </div>
