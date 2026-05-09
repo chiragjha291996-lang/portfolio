@@ -260,6 +260,27 @@ function ProjectDetailsPage() {
                 </section>
               </>
             )}
+            {project.findings && (
+              <>
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                <section>
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="p-2 rounded-lg bg-surface-dark border border-white/5 text-amber-400">
+                      <span className="material-symbols-outlined text-xl">labs</span>
+                    </span>
+                    <h2 className="text-2xl font-bold text-white font-display">{project.findings.heading}</h2>
+                  </div>
+                  <p className="text-text-secondary leading-relaxed font-body mb-6">{project.findings.intro}</p>
+                  <div className="space-y-4">
+                    {project.findings.highlights.map((text, i) => (
+                      <div key={i} className="glass-panel rounded-xl p-5 border-l-2 border-amber-400/60">
+                        <p className="text-sm text-text-secondary leading-relaxed">{text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </>
+            )}
             {project.modules && (
               <section>
                 <h3 className="text-lg font-bold text-white font-display mb-4">Key Implementation Modules</h3>

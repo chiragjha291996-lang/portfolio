@@ -340,7 +340,7 @@ export const projects = [
       },
       {
         heading: 'Comparison & Output',
-        text: 'The comparison stage pairs corresponding graphs across two SOPs and prompts GPT-4o to identify five discrepancy classes: terminology drift, missing entities, reordered or missing steps, broken causal chains, and contradictory conditions. Each finding is severity-weighted and traceable back to the source paragraph. The final output is a structured discrepancy report with scoped remediation suggestions — not just "these differ," but "here is the specific text that needs revision and why."',
+        text: 'The comparison stage pairs corresponding graphs across two SOPs and prompts GPT-4o to identify five discrepancy classes: terminology drift, missing entities, reordered or missing steps, broken causal chains, and contradictory conditions. Each finding is severity-weighted and traceable back to the source paragraph. The final output is a structured discrepancy report with scoped remediation suggestions — not just "these differ," but "here is the specific text that needs revision and why." SOP pair selection is human-governed — a domain expert confirms both documents govern the same process before comparison runs. The system does not auto-determine comparability; that judgment requires organisational context the documents alone cannot provide.',
       },
     ],
     solution: null,
@@ -356,10 +356,17 @@ export const projects = [
         url: 'https://arxiv.org/pdf/2602.01858',
       },
     ],
+    findings: {
+      heading: 'What it Found',
+      intro: 'Run on real documents. The system was run against two pharmaceutical SOPs: an operational equipment cleaning procedure and a cleaning validation standard from the same domain. It produced 23 discrepancies — 7 high severity, 14 medium, 2 low — across entity, causal, and flow graphs.',
+      highlights: [
+        'The highest-severity finding: the operational SOP used by floor operators daily contains no acceptance criteria. No residue limits, no CFU thresholds, no pass/fail values. The validation standard defines all of these. Operators were executing a cleaning procedure with no defined standard for what "clean enough" means — a pre-existing compliance gap the system surfaced in a single run.',
+        'Other confirmed findings included a missing batch ID removal step, a sequence conflict between how the two documents order validation activities, and terminology drift — "Cleaning and Sanitization" and "Cleaning Validation" used interchangeably across documents that treat them as the same activity when they are not.',
+      ],
+    },
     outcomes: [
       { label: 'Discrepancies detected', value: '23' },
-      { label: 'Graph types', value: '3' },
-      { label: 'Faster vs manual', value: '20%+' },
+      { label: 'High-severity findings manually confirmed', value: '5 of 5' },
     ],
     outcomesHeaderIcon: 'auto_fix_high',
     outcomesHeaderIconClass: 'text-amber-400',
@@ -375,14 +382,14 @@ export const projects = [
         icon: 'manage_search',
         title: 'Discrepancy Detection',
         description:
-          'Pairs of corresponding graphs are compared with GPT-4o across five discrepancy classes: terminology drift, missing or extra entities, reordered steps, broken causal chains, and contradictory pre/post-conditions. Each finding is severity-weighted (critical / major / minor) and includes the source paragraph from both SOPs, so reviewers can triage without re-reading the full documents.',
+          'Pairs of corresponding graphs are compared with GPT-4o across five discrepancy classes: terminology drift, missing or extra entities, reordered steps, broken causal chains, and contradictory pre/post-conditions. Each finding is severity-weighted (high / medium / low) and includes the source paragraph from both SOPs, so reviewers can triage without re-reading the full documents.',
         color: 'text-slate-300',
       },
       {
         icon: 'fact_check',
         title: 'Evaluation & Grounding',
         description:
-          'Every extracted node and edge is traced back to its source sentence via character-offset anchors. Structural sanity checks verify graph connectivity (no orphan nodes, no cycles in the flow graph). This grounding layer ensures the system never hallucinates entities or relationships that don\'t exist in the original SOP text.',
+          'The pipeline runs a structured eval suite against every report it produces. The report eval validates schema completeness, ISO timestamp formatting, severity count reconciliation, and remediation specificity — catching generic outputs like "review and update" before they reach a reviewer. Remediations that don\'t name a specific section, value, or action fail the check automatically. The output from running on two real pharmaceutical SOPs was additionally spot-checked manually: five of the highest-severity findings were cross-referenced line by line against source SOP text. All five were confirmed as genuine discrepancies present in the documents.',
         color: 'text-emerald-400',
       },
       {
@@ -393,7 +400,7 @@ export const projects = [
         color: 'text-amber-300',
       },
     ],
-    chatContext: `Project: SOP Discrepancy Engine. Category: Personal Project. SOP discrepancies are the largest category of FDA observations in pharma. Built a research-driven MVP for a document intelligence system that identifies structural discrepancies across SOPs and generates auto-remediations using LLMs. Informed by SOPRAG (arXiv:2602.01858) and SOPStruct (arXiv:2504.00029v1). Citations: https://arxiv.org/html/2504.00029v1 and https://arxiv.org/pdf/2602.01858. Solo. Pipeline: three parallel graph extraction stages (entity, causal, flow) with Pydantic-enforced structured outputs via GPT-4o, then pairwise comparison across five discrepancy classes (terminology drift, missing entities, reordered steps, broken causal chains, contradictory conditions), severity-weighted findings traceable to source paragraphs, and scoped remediation suggestions. Tech: Python, Pydantic, GPT-4o, graph construction, LLM pipelines. Outcomes: 23 discrepancies detected, 3 graph types, 20%+ faster than manual review. Document intelligence, compliance, structured outputs, discrepancy detection, remediation engine.`,
+    chatContext: `Project: SOP Discrepancy Engine. Category: Personal Project. SOP discrepancies are the largest category of FDA observations in pharma. Built a research-driven MVP for a document intelligence system that identifies structural discrepancies across SOPs and generates auto-remediations using LLMs. Informed by SOPRAG (arXiv:2602.01858) and SOPStruct (arXiv:2504.00029v1). Citations: https://arxiv.org/html/2504.00029v1 and https://arxiv.org/pdf/2602.01858. Solo. Pipeline: three parallel graph extraction stages (entity, causal, flow) with Pydantic-enforced structured outputs via GPT-4o, then pairwise comparison across five discrepancy classes (terminology drift, missing entities, reordered steps, broken causal chains, contradictory conditions), severity-weighted (high/medium/low) findings traceable to source paragraphs, and scoped remediation suggestions. SOP pair selection is human-governed — a domain expert confirms both documents govern the same process before comparison runs. Tech: Python, Pydantic, GPT-4o, graph construction, LLM pipelines. Outcomes: 23 discrepancies detected (7 high, 14 medium, 2 low), 5 of 5 high-severity findings manually confirmed against source text. Run on two real pharmaceutical SOPs: an operational equipment cleaning procedure and a cleaning validation standard. Highest-severity finding: operational SOP contained no acceptance criteria — no residue limits, no CFU thresholds, no pass/fail values. Document intelligence, compliance, structured outputs, discrepancy detection, remediation engine.`,
   },
   {
     id: 'personal-project-2',
