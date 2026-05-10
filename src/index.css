@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 @layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
   .glass-panel {
     @apply bg-surface-dark/40 backdrop-blur-md border border-white/10;
   }

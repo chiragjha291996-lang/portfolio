@@ -50,7 +50,6 @@ function Header() {
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/projects', label: location.pathname.startsWith('/projects/') ? 'Expertise' : 'Projects' },
-    { to: '/blog', label: 'Blog' },
     { to: '/contact', label: 'Contact' },
   ];
 

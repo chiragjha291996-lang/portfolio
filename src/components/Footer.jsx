@@ -21,10 +21,6 @@ function Footer() {
             LinkedIn
             <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent shrink-0">arrow_outward</span>
           </a>
-          <a href="https://chiragjha1996.wordpress.com" target="_blank" rel="noopener noreferrer" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
-            Blog
-            <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent shrink-0">arrow_outward</span>
-          </a>
           <a href="https://github.com/chiragjha291996-lang/all_projects" target="_blank" rel="noopener noreferrer" className="text-text-secondary text-xs font-mono uppercase tracking-wider hover:text-ai-accent transition-colors flex items-center gap-2 group">
             GitHub
             <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 transition-all text-ai-accent shrink-0">arrow_outward</span>
